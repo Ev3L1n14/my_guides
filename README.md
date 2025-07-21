@@ -51,7 +51,7 @@ RECOVERING A CORRUPTED RECYCLE BIN
 Note: This will clear out all files from the Recycle Bin but you can then use a software recovery program to get them back. Use Recuva, GetData or Stellar.
 ---------------------------------------------------------
 HACKER'S SEARCH ENGINES
-shodan.io / censys.io
+shodan.io/censys.io
 -- servers
 hunter.io
 -- email
@@ -149,88 +149,53 @@ A browser tab with a search that is opened today, will retain the timestamp of t
 - number_files_full.zip/private/var/mobile/Containers/Data/Application/Library/Preferences/com.apple.mobilesafari.plist: 0x2155
 - number_files_full.zip/private/var/mobile/CoreDuet/Knowledge/KnowledgeC.db : 0x481569E
 ---------------------------------------------------------
-
-
 LIST REGISTRIES USING A RUNNING PID WITH VOLATILITY
-
-(Eve Ortiz)
-
 Note: These steps are only for the old volatility version.
-
 Note: In REMnux use vol.py -f <mem.dump> imageinfo
 
 Let’s assume we need to find the PID of a running program and what registries are using it.
 
-·         Open PowerShell in Windows or the terminal screen in REMnux VM and find the image profile:
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> imageinfo
-
-§  This will take a while to complete depending on the size of the image
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> kdbgscan
-
-§  You can also use the kdbgscan plugin to scan the kernel debugger and list suggested profiles but it outputs more info
+Open PowerShell in Windows or the terminal screen in REMnux VM and find the image profile:
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> imageinfo
+--- This will take a while to complete depending on the size of the image
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> kdbgscan
+--- You can also use the kdbgscan plugin to scan the kernel debugger and list suggested profiles but it outputs more info
 
 Note: If you need help with the plugins use -h with the command.
 
 Say we found the profiles WinXPSP2x86 and WinXPSP3x86. You can use a generic profile for both 32/64bit OS versions by just using WinXPSP2. There are other generic profiles for other OS versions.
-
 Note: In a PS prompt you can use./volatility_2.6_win64_standalone.exe - -info | more to view generic profiles you can use instead of waiting for one to be identified.
 
 Once you have the profile, find the network connections:
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> netscan
-
-§  If there is no connection captured then this option won’t work
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> netscan
+--- If there is no connection captured then this option won’t work
 
 The command above shows all processes that had/have a network connection established (e.g., rundll32.exe with a PID 1896 shows an active connection to a suspected machine).
-
-·         Now find any process information:
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> psinfo
-
-§  Or netscan, malutil, psscan, pslist,
+Now find any process information:
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> psinfo
+--- Or netscan, malutil, psscan, pslist,
 
 This last command shows details about each running process. Let’s list the processes a bit more clearly.
+Check for all running PIDs now:
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> pslist
+--- Write down the PID # you suspect
 
-·         Check for all running PIDs now:
+Now we need to list all the files that are using that running PID #:
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> handles -p <PID#> -t file
+--- Replace -p <PID#> with the actual PID number you need
 
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> pslist
+List the registries using that same running PID #:
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> handles -p <PID#> -t key
+--- Use -h to see even more options
 
-§  Write down the PID # you suspect
-
- 
-
-·         Now we need to list all the files that are using that running PID #:
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> handles -p <PID#> -t file
-
-§  Replace -p <PID#> with the actual PID number you need
-
- 
-
-·         List the registries using that same running PID #:
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> handles -p <PID#> -t key
-
-§  Use -h to see even more options
-
- 
-
-·         To view a process tree (Parent > Child) use:
-
-o   ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> pstree
-
-§  Shows you Parent and Child process tree
-
+To view a process tree (Parent > Child) use:
+-- ./volatility_2.6_win64_standalone.exe -f <mem.dump> profile=<profile_suggested> pstree
+--- Shows you Parent and Child process tree
 Notes:
-
-·         To list all options you can use: -h | more
-
-·         To find a specific option use -h | grep malfind
+-- To list all options you can use: -h | more
+-- To find a specific option use -h | grep malfind
 
 OTHER
-
 Filescan:
 -- vol.py -f <mem.dump> profile=<profile_suggested> filescan
 
@@ -250,15 +215,15 @@ Dump a PE file:
 -- vol.py -f <mem.dump> profile=<profile_suggested> dlldump –pid=492 -D out –base=<offset>
 --- find the offset with dlllist
 
-- Search for commands from attackers via a console shell (cmd.exe):
+Search for commands from attackers via a console shell (cmd.exe):
 -- vol.py -f <mem.dump> profile=<profile_suggested> cmdscan   
 
 Get SIDs:
 -- vol.py -f <mem.dump> profile=<profile_suggested> getsids
 --- Reads the shell command history (default = 50 lines)
 
-Search
-- vol.py -f <mem.dump> profile=<profile_suggested> consoles
+Search:
+-- vol.py -f <mem.dump> profile=<profile_suggested> consoles
  
 
  
