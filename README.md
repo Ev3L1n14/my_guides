@@ -50,24 +50,24 @@ RECOVERING A CORRUPTED RECYCLE BIN
 - Type: rd /s /q c:\$Recycle.bin
 Note: This will clear out all files from the Recycle Bin but you can then use a software recovery program to get them back. Use Recuva, GetData or Stellar.
 ---------------------------------------------------------
-# HACKER'S SEARCH ENGINES
-shodan.io/censys.io
+HACKER'S SEARCH ENGINES
+- shodan.io/censys.io
 -- servers
-hunter.io
+- hunter.io
 -- email
-urlscan.io
+- urlscan.io
 -- other websites
-grep.app
+- grep.app
 -- source codes
-intelx.io
+- intelx.io
 -- OSINT
-wigle.net
+- wigle.net
 -- wifi routers
-fullhunt.io
+- fullhunt.io
 -- attack surface
-vulners.com
+- vulners.com
 -- system vulnerabilities
-viz.greynoise.io
+- viz.greynoise.io
 -- threat intel
 ---------------------------------------------------------
 PORTS USED BY MALWARE
