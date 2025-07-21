@@ -227,7 +227,7 @@ Search:
 ---------------------------------------------------------
 INSTALLING PYTHON SCRIPTS IN WINDOWS
 Get your script from github:
--- git clone https://github.com//the_script.git
+-- git clone https[:]//github.com//the_script.git
 --- Command for Linux
 --- For Windows, just download the files using the Download button and unzip
 
