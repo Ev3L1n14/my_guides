@@ -254,11 +254,107 @@ PYTHON FIX
 - If you get upgrade or incompatible errors, it’s better to downgrade to an older version then try to upgrade it using the commands above. You can also try to upgrade to a newer version. Try both ways. 
 - Another issue is that a script may be too old to work with the current python engine. You will have to fix the script itself to make it compatible or get an older version of python for it.
 ---------------------------------------------------------
- 
+IMPORTANT DIRECTORIES FOR ANDROID FORENSICS
+System
+/system_ce/0/accounts_ce.db
+/system_de/0/accounts_de.db
 
- 
+Multi-user environment
+/data/user_de/0
+/data/user_de/10
 
- 
+Browser
+/data/com.android.browser/browser.db,
+/data/data/com.android.chrome/app_chrome/Default/History
+Microsoft Edge: /data/data/com.microsoft.emmx/app_chrome/Default/History
+Firefox: /data/data/org.mozilla.firefox/files/places.sqlite
+Opera: /data/user/0/org.mozilla.firefox/files/places.sqlite
+Brave: /data/user/0/com.brave.browser/app_chrome/Default/History
 
+Media
+/data/media/0/DCIM/Camera
+/data/data/com.android.providers.media/databases/external.
+/data/media/0/bluetooth
+/data/media/0/Download
+/data/media/0/Pictures/Screenshot
+/data/media/0/Pictures/Twitter
 
- 
+Mail
+/data/data/com.google.android.gm/databases/bigTopDataDB.1206044692
+/data/data/com.google.android.gm/databases/metadata.1206044692.db
+/data/data/com.google.android.gm/shared_prefs/Gmail.xml
+
+Communication
+/data/data/com.google.android.apps.messaging/databases
+/data/data/com.android.providers.telephony/databases/mmssms.db
+/data/user_de/0/com.android.providers.telephony/databases/mmssms.db
+/data/data/com.google.android.apps.messaging/databases/bugle_db
+
+Call logs
+/data/com.android.providers.contacts/databases/contacts2.db -older version
+/data/user_de/0/com.android.providers.contacts/databases/calllog_db 
+
+Contacts
+/data/data/com.android.providers.contacts/databases/contacts2.db
+
+System Artifacts/Installed Applications
+/system/packages.list
+/data/system/packages.xml
+/data/com.vending.android
+/data/com.android.vending/databases/library.db
+/data/data/com.android.vending/databases/localappstate.db
+/data/data/com.google.android.gms/databases/gass.db
+
+Battery Stats
+/data/data/com.google.android.gms/shared_prefs/Batterystats.xml
+/data/data/com.google.android.gms/files /BatterystatsDumpsysTask.gz
+/system/batterystats.bin
+/system/batterystats-checkin.bin
+/system/batterystats-daily.xml
+
+Recent Tasks and Snapshots
+/data/system_ce/0/recent_tasks
+/data/system_ce/0/snapshots
+
+Usage Stats
+/data/system/usagestats/0/
+
+Samsung My Files App
+/data/data/com.sec.android.app.myfiles
+FileCache.db
+myfiles.db
+
+Digital Wellbeing Dashboard
+/data/data/com.google.android.apps.wellbeing/databases/app_usage
+
+Runtime Permissions
+/data/system/appops.xml
+/data/system/users/0/runtime-permissions.xml
+
+Factory Reset
+/data/misc/bootstat/factory_reset
+
+Shutdown
+/data/system/shutdown-checkpoints
+
+Calendar
+/data/data/com.android.providers.calendar/databases/calendar.db
+
+Notifications
+/data/system/users/0/settings_secure.xml
+
+Wi-FI
+/data/misc/wifi/WifiConfigStore.xml
+/temp/data/misc/wifi/softap.conf
+/misc/wifi/wpa_supplicant.conf
+
+Location
+/data/data/com.google.android.apps.maps/databases/gmm_storage.db
+
+General System
+/data/system/netpolicy.xml
+/system/sync/accounts.xml
+/system/users/0.xml
+
+Wearables
+/data/misc/bluedroid/bt_config.conf
