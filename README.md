@@ -1,4 +1,4 @@
-# Collection of my guides
+# Collection of my forensic analysis notes
 ---------------------------------------------------------
 SYSINTENNALS SUITE - PSTOOLS
 Using PsLoggedOn from PsTools part of Sysinternals, you can find users that have logged on locally and remotely onto shares.
@@ -223,7 +223,42 @@ Get SIDs:
 --- Reads the shell command history (default = 50 lines)
 
 Search:
--- vol.py -f <mem.dump> profile=<profile_suggested> consoles
+- vol.py -f <mem.dump> profile=<profile_suggested> consoles
+---------------------------------------------------------
+INSTALLING PYTHON SCRIPTS IN WINDOWS
+Get your script from github:
+-- git clone https://github.com//the_script.git
+--- Command for Linux
+--- For Windows, just download the files using the Download button and unzip
+
+Make sure you have python installed:
+-- python --version
+-- pip --version
+Note: If you’re installing python for the first time, make sure you select the option to add it to the environment variables (Windows) and also associate any .py file to it.
+
+Update it:
+-- python -m pip install --upgrade pip
+--- Works for both OS
+
+Go to the scripts location and download its dependencies:
+-- pip install -r requirements.txt
+--- Almost all scripts come with the requirements.txt file
+
+To run a script:
+-- python <script.py>
+--- If you associated the file to python, then just enter the script name and it should run
+
+Note: You can also use pip3 or python3 depending in the OS
+
+PYTHON FIX
+- If you get upgrade or incompatible errors, it’s better to downgrade to an older version then try to upgrade it using the commands above. You can also try to upgrade to a newer version. Try both ways. 
+- Another issue is that a script may be too old to work with the current python engine. You will have to fix the script itself to make it compatible or get an older version of python for it.
+---------------------------------------------------------
  
+
+ 
+
+ 
+
 
  
